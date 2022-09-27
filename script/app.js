@@ -34,7 +34,7 @@ if(boolean==true){
 
 TiempoGanador(ganador);
 
- let velocidades=[{
+ const velocidades=[{
   "curva":'cubicBezier(.1, .02, .1, .1)'
  }];
 
