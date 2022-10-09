@@ -1,6 +1,23 @@
 
 
+$('.toggle-click').on('click',function(){
+  $('.toggle-click').removeClass('show-red');
+  $(this).addClass('show-red');
+});
 
+/*OBTENER EL AUTO SELECCIONADO POR EL USUARIO Y GUARDARLO EN UNA VARIABLE RESPECTIVAMENTE 
+ EN EL CASO QUE LA VARIABLE GANADOR SEA TRUE, EL AUTO DEBERA LLEGAR PRIMERO*/
+
+ $("#car1_select").click( function(){
+  autousuario=1;
+
+});
+
+$("#car2_select").click( function(){
+  autousuario=2;
+ 
+});
+ 
 
 //NUMEROS ALEATORIOS PARA VER EL AUTO GANADOR, del 0 al 6
   let minrandom = 0;
@@ -62,14 +79,23 @@ let curva= velocidades[2].curva;
 
   let iniciar=0;
 
-	document.getElementById("iniciar").onclick = function() {myFunction()};
+  const btnrestart= document.getElementById("restart");
+btnrestart.disabled=true;
+
+  
+	
 
 //CAR 1 VERDE CAR 2 AMARILLO
  
 
 function myFunction() {
+
+  alert("entro a la func");
+//OBTENGO NOMBRE DEL USUARIO
+const nomuser = document.getElementById("nomuser").value; 
+
   let finalmessage="";
-  let nomuser= prompt('INGRESE SU NOMBRE');
+  //let nomuser= prompt('INGRESE SU NOMBRE');
   if(ganador==true){
  finalmessage=' Felicidades !!! '+nomuser+' Ganaste la Carrera';
 }
@@ -85,10 +111,8 @@ parrafo.textContent;  // "Importante"
 
 parrafo.textContent = finalmessage;  // No interpreta el HTML
 
-  let autousuario= prompt('SELECCIONE AUTO: 1- VERDE // 2 AMARILLO');
- //AL GUARDAR EL AUTO SELECCIONADO POR EL USUARIO EN EL CASO QUE LA VARIABLE GANADOR SEA TRUE, EL AUTO DEBERA LLEGAR PRIMERO
+  
 
- 
 
  let tiempocar1=0;
  let tiempocar2=0;
@@ -104,18 +128,26 @@ tiempocar1=res;
 
 
  
-
-
 // Obtengo el valor del input html y lo asigno a la variable tiempo.
   let tiempo = document.getElementById("tiempo").value; 
 let tiempo2= parseInt(tiempo) *1000; // Pasar los segundos a milisegundos
-
-
-
 let cubic="cubicBezier(.5, .02, .1, .5)";
   
-//AUTO VERDE
-  var design1 = anime({
+//ANIMACIONES AUTOS
+
+
+
+
+let botonini = anime({
+  targets: '#iniciar',
+ opacity:0,
+loop: false,
+ 
+});
+
+
+
+  let design1 = anime({
   targets: '#car1',
   keyframes: [
    
@@ -185,11 +217,30 @@ var design = anime({
 });
 
 
+const t = anime.timeline({
+  //each of the below animations will have a 1000ms duration
+  //and easeInSine easing
+  duration: 1000,
+  easing: 'easeInSine'
+});
+t.add({
+  targets: '#restart',
+  delay: tiempo2+4000,
+  opacity:1,
+}).add({
+  update: function() {
+    let btnrestart= document.getElementById("restart");
+    btnrestart.disabled=false;
+  }
+
+},'-=1000');
+
+
+
 
 //ANIMAR LETRAS SALIDA 
 
-
-let ml4 = {};
+const ml4 = {};
 ml4.opacityIn = [0,1];
 ml4.scaleIn = [0.2, 1];
 ml4.scaleOut = 3;
@@ -197,51 +248,137 @@ ml4.durationIn = 600;
 ml4.durationOut = 400;
 ml4.delay = 300;
 
-anime.timeline({loop: false})
-  .add({
+
+const letras =anime.timeline({loop: false})
+  letras.add({
     targets: '.ml4 .letters-1',
     opacity: ml4.opacityIn,
     scale: ml4.scaleIn,
     duration: ml4.durationIn
-  }).add({
+  });
+  letras.add({
     targets: '.ml4 .letters-1',
     opacity: 0,
     scale: ml4.scaleOut,
     duration: ml4.durationOut,
     easing: "easeInExpo",
     delay: ml4.delay
-  }).add({
+  });
+  letras.add({
     targets: '.ml4 .letters-2',
     opacity: ml4.opacityIn,
     scale: ml4.scaleIn,
     duration: ml4.durationIn
-  }).add({
+  });
+  letras.add({
     targets: '.ml4 .letters-2',
     opacity: 0,
     scale: ml4.scaleOut,
     duration: ml4.durationOut,
     easing: "easeInExpo",
     delay: ml4.delay
-  }).add({
+  });
+  letras.add({
     targets: '.ml4 .letters-3',
     opacity: ml4.opacityIn,
     scale: ml4.scaleIn,
     duration: ml4.durationIn
-  }).add({
+  });
+  letras.add({
     targets: '.ml4 .letters-3',
     opacity: 0,
     scale: ml4.scaleOut,
     duration: ml4.durationOut,
     easing: "easeInExpo",
     delay: ml4.delay
-  }).add({
+  });
+  letras.add({
     targets: '.ml4',
     opacity: 0,
     duration: 400,
     delay: 400
   });
 
+  
+  
+ 
+
+  
 
 
 }
 
+
+
+
+
+document.getElementById("iniciar").onclick = function() {myFunction()};
+
+
+
+
+// BOTON CON FUNCION PARA RESETEAR ANIMACIONES
+document.getElementById('restart').addEventListener('click', () => {
+ //DESACTIVO BOTON UNA VEZ PRESIONADO
+ let btnrestart= document.getElementById("restart");
+    btnrestart.disabled=true;
+
+let design1 = anime({
+    targets: '#car1',
+    keyframes: [
+      {translateX: 0},
+    ],
+    loop: false,
+  });
+  
+  
+  var design = anime({
+    targets: '#car2',
+    keyframes: [  
+      {translateX: 0},
+     
+    ],
+    loop: false, 
+  });
+
+  var design = anime({
+    targets: '#track',
+    keyframes: [ 
+      {translateX: 0},
+     
+    ],
+    loop: false
+  });
+
+
+  var design = anime({
+    targets: '#finish',
+    keyframes: [  
+      {translateX: 0},
+     
+    ],
+    loop: false, 
+  });
+
+  var design = anime({
+    targets: '#windowfinish',
+    opacity:0,
+    loop: false
+  });
+
+  var design = anime({
+    targets: '#restart',
+    opacity:0,
+    loop: false
+  });
+  
+  let botonini = anime({
+    targets: '#iniciar',
+   opacity:1,
+  loop: false,
+   
+  });
+
+});
+
+ 
