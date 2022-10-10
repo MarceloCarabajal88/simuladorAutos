@@ -22,66 +22,9 @@ $("#car2_select").click( function(){
 //NUMEROS ALEATORIOS PARA VER EL AUTO GANADOR, del 0 al 6
   let minrandom = 0;
   let maxrandom = 6;
-  let ganador= false;
+ 
 
-  let random = Math.floor(Math.random()*(maxrandom-minrandom+1)+minrandom);
- //alert(random);
-
- //DETERMINO SI EL NUMERO RANDOM ES PAR
-//SI EL NUMERO ES PAR EL USUARIO GANA LA PARTIDA SIN IMPORTAT EL AUTO APOSTADO
-
-if(random%2==0){
-  ganador= true;
-}
-
-
-let res=0;
-
-function TiempoGanador(boolean){
-  
-if(boolean==true){
-  res=-1500;
-
-}else{
-  res=+1500;
-}
-}
-//alert(ganador);
-
-
-TiempoGanador(ganador);
-
- const velocidades=[{
-  "curva":'cubicBezier(.1, .02, .1, .1)'
- }];
-
-function CurvasVelocidad(){
-  for(x=0;x<5;x++){
-
-// valor random inicial
-let minrandomc = 0;
-  let maxrandomc = 4;
-let random1 = Math.floor(Math.random()*(maxrandomc-minrandomc+1)+minrandomc);
-let random2= Math.floor(Math.random()*(maxrandomc-minrandomc+1)+minrandomc);
-
-    let vel={
-      "curva":'cubicBezier(.'+random1+', '+random2+', .1, .1)'
-    }
-    velocidades.push(vel);
-  }
-}
-
-CurvasVelocidad();
-
-
-
-let curva= velocidades[2].curva;
-
-  let iniciar=0;
-
-  const btnrestart= document.getElementById("restart");
-btnrestart.disabled=true;
-
+ 
   
 	
 
@@ -90,7 +33,72 @@ btnrestart.disabled=true;
 
 function myFunction() {
 
-  alert("entro a la func");
+  let ganador= false;
+
+  let random = Math.floor(Math.random()*(maxrandom-minrandom+1)+minrandom);
+  //alert(random);
+ 
+  //DETERMINO SI EL NUMERO RANDOM ES PAR
+ //SI EL NUMERO ES PAR EL USUARIO GANA LA PARTIDA SIN IMPORTAT EL AUTO APOSTADO
+ 
+ if(random %2==0){
+   ganador= true;
+ }
+ 
+ 
+ let res=0;
+ 
+ function TiempoGanador(boolean){
+   
+ if(boolean==true){
+   res=-1500;
+ 
+ }else{
+   res=+1500;
+ }
+ }
+ alert("Este es el numero random :"+random+"ESTE ES EL BOOL GANADOR "+ganador);
+ 
+ 
+ TiempoGanador(ganador);
+ 
+  const velocidades=[{
+   "curva":'cubicBezier(.1, .02, .1, .1)'
+  }];
+ 
+ function CurvasVelocidad(){
+   for(x=0;x<5;x++){
+ 
+ // valor random inicial
+ let minrandomc = 0;
+   let maxrandomc = 4;
+ let random1 = Math.floor(Math.random()*(maxrandomc-minrandomc+1)+minrandomc);
+ let random2= Math.floor(Math.random()*(maxrandomc-minrandomc+1)+minrandomc);
+ 
+     let vel={
+       "curva":'cubicBezier(.'+random1+', '+random2+', .1, .1)'
+     }
+     velocidades.push(vel);
+   }
+ }
+ 
+ CurvasVelocidad();
+ 
+ 
+ 
+ let curva= velocidades[2].curva;
+ 
+   let iniciar=0;
+ 
+   const btnrestart= document.getElementById("restart");
+ btnrestart.disabled=true;
+ 
+
+
+
+
+
+
 //OBTENGO NOMBRE DEL USUARIO
 const nomuser = document.getElementById("nomuser").value; 
 
@@ -244,20 +252,27 @@ const ml4 = {};
 ml4.opacityIn = [0,1];
 ml4.scaleIn = [0.2, 1];
 ml4.scaleOut = 3;
-ml4.durationIn = 600;
-ml4.durationOut = 400;
-ml4.delay = 300;
+ml4.durationIn = 400;
+ml4.durationOut = 300;
+ml4.delay = 200;
 
 
 const letras =anime.timeline({loop: false})
+
+letras.add({
+  targets: '.ml4',
+  opacity: 1,
+  duration: 100,
+  delay: 0});
+
   letras.add({
-    targets: '.ml4 .letters-1',
+    targets: '.letters-1',
     opacity: ml4.opacityIn,
     scale: ml4.scaleIn,
     duration: ml4.durationIn
   });
   letras.add({
-    targets: '.ml4 .letters-1',
+    targets: '.letters-1',
     opacity: 0,
     scale: ml4.scaleOut,
     duration: ml4.durationOut,

@@ -232,7 +232,7 @@ height: auto;
 .ml4 .letters {
 
   margin: auto;
- 
+ z-index: 10000;
   opacity: 0; 
 }
 
