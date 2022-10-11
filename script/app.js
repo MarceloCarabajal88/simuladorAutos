@@ -1,5 +1,13 @@
 
+const historialjugadores=[];
+const ListaJugadores=[];
+const pruebajug=[{
+  "Nombre":"Marce",
+  "apuesta":300
+}];
+
 let saldo=2000;
+let saldo2=0;
 document.getElementById('saldovisual').innerHTML=saldo;
 
 $('.toggle-click').on('click',function(){
@@ -107,14 +115,7 @@ const nomuser = document.getElementById("nomuser").value;
 //OBTENGO APUESTA DEL USUARIO
 let apuesta = parseInt(document.getElementById("apuesta").value); 
 
-switch(ganador){
-  case true:
-    saldo=saldo+apuesta;
-    break;
-    case false:
-      saldo= saldo-apuesta;
-      break;
-}
+
 
   let finalmessage="";
   //let nomuser= prompt('INGRESE SU NOMBRE');
@@ -156,15 +157,108 @@ let tiempo2= parseInt(tiempo) *1000; // Pasar los segundos a milisegundos
 let cubic="cubicBezier(.5, .02, .1, .5)";
   
 
-const jugador={
-"Nombre":nomuser,
-"saldo":saldo,
-};
 
-const jugadores=[];
-jugadores.push(jugador);
+/* FALTA CHEQUEAR ESTA PARTE DEL CODIGO
+const arrayVacio = (arr) => !Array.isArray(arr) || arr.length === 0;
+
+let jugadoractivo=ListaJugadores.find(ListaJugadores => ListaJugadores.Nombre == nomuser);
+console.log("Estre es el jug activo"+jugadoractivo);
+
+ 
+if (arrayVacio(ListaJugadores)==true && typeof jugadoractivo === 'undefined') { 
+alert("Entre si no hay jugadores");
+  switch(ganador){
+    case true:
+      saldo=saldo+apuesta;
+      break;
+      case false:
+        saldo= saldo-apuesta;
+        break;
+  }
 
 
+  console.log("Array esta vacio!/ NUevo Jugador") 
+
+let jugador={
+  "Nombre":nomuser,
+  "saldo":saldo,
+  };
+
+  let jugadorHisto={
+    "Nombre":nomuser,
+    "apuesta":apuesta,
+    "resultado":ganador
+    };
+
+    ListaJugadores.push(jugador);
+    historialjugadores.push(jugadorHisto);
+
+
+} 
+else
+if(arrayVacio(ListaJugadores)==false && typeof jugadoractivo !== 'undefined' ){
+  alert("Entre si SI hay jugadores");
+if(arrayVacio(jugadoractivo)==false){
+
+  switch(ganador){
+    case true:
+      saldo2=jugadoractivo.saldo+apuesta;
+      break;
+      case false:
+        saldo2= jugadoractivo.saldo-apuesta;
+        break;
+  }
+
+  let jugadorHisto={
+    "Nombre":nomuser,
+    "apuesta":apuesta,
+    "resultado":ganador
+    };
+    historialjugadores.push(jugadorHisto);
+
+
+console.log(jugadoractivo.saldo);
+
+ListaJugadores.forEach(jug => {
+  if(jug.Nombre==jugadoractivo.Nombre){
+
+jug.saldo=saldo;
+
+  }
+});
+
+}
+}
+
+*/
+
+
+switch(ganador){
+  case true:
+    saldo=saldo+apuesta;
+    break;
+    case false:
+      saldo= saldo-apuesta;
+      break;
+}
+
+
+
+
+  let jugadorHisto={
+    "Nombre":nomuser,
+    "apuesta":apuesta,
+    "resultado":ganador
+    };
+
+    
+    historialjugadores.push(jugadorHisto);
+
+
+let historialjugadorActual = historialjugadores.filter(jugadorAc => jugadorAc.Nombre == nomuser);
+
+console.log(historialjugadores);
+console.log(historialjugadorActual);
 
 //ANIMACIONES AUTOS
 
