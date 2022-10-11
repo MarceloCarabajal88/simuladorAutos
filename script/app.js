@@ -1,4 +1,6 @@
 
+let saldo=2000;
+document.getElementById('saldovisual').innerHTML=saldo;
 
 $('.toggle-click').on('click',function(){
   $('.toggle-click').removeClass('show-red');
@@ -57,7 +59,6 @@ function myFunction() {
    res=+1500;
  }
  }
- alert("Este es el numero random :"+random+"ESTE ES EL BOOL GANADOR "+ganador);
  
  
  TiempoGanador(ganador);
@@ -102,6 +103,19 @@ function myFunction() {
 //OBTENGO NOMBRE DEL USUARIO
 const nomuser = document.getElementById("nomuser").value; 
 
+
+//OBTENGO APUESTA DEL USUARIO
+let apuesta = parseInt(document.getElementById("apuesta").value); 
+
+switch(ganador){
+  case true:
+    saldo=saldo+apuesta;
+    break;
+    case false:
+      saldo= saldo-apuesta;
+      break;
+}
+
   let finalmessage="";
   //let nomuser= prompt('INGRESE SU NOMBRE');
   if(ganador==true){
@@ -141,6 +155,17 @@ tiempocar1=res;
 let tiempo2= parseInt(tiempo) *1000; // Pasar los segundos a milisegundos
 let cubic="cubicBezier(.5, .02, .1, .5)";
   
+
+const jugador={
+"Nombre":nomuser,
+"saldo":saldo,
+};
+
+const jugadores=[];
+jugadores.push(jugador);
+
+
+
 //ANIMACIONES AUTOS
 
 
@@ -334,9 +359,14 @@ document.getElementById("iniciar").onclick = function() {myFunction()};
 
 // BOTON CON FUNCION PARA RESETEAR ANIMACIONES
 document.getElementById('restart').addEventListener('click', () => {
+
+
+
  //DESACTIVO BOTON UNA VEZ PRESIONADO
  let btnrestart= document.getElementById("restart");
     btnrestart.disabled=true;
+
+document.getElementById('saldovisual').innerHTML=saldo;
 
 let design1 = anime({
     targets: '#car1',
