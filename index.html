@@ -21,105 +21,41 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
+  <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+
 </head>
 
-<body>
+<body class="d-flex align-items-center">
 
  
 
-
-  <div class="box">
-
-    <div class="contenedor">
-
-
-      <!-- div sky -->
-      <div class="sky">
-        <audio controls autoplay>
-          <source src="./assets/sonidos/Route66.mp3" type="audio/mpeg">
-        </audio>
-        <div class="spansaldo">
-          <span id="saldovisual"></span>
-        </div>
-
-        <h1><strong>SIMULADOR CARRERAS</strong><br>DE AUTOS</h1>
-        <div class="finalmessage" id="windowfinish">
-          <p class="mensajefinal"></p>
-        </div>
+<div class="container d-flex justify-content-center">
+ <div class="col-lg-6 col-md-6 col-10 pt-4 text-center formingreso">
+<h2>Bienvenido</h2>
+<div class="inputdatainicio">
+  <label><strong>Nombre</strong></label>
+  <input id="nomuser" value="" placeholder="Ingrese su nombre de usuario">
+</div>
+<div class="inputdatainicio">
+  <label><strong>Ingresar Saldo</strong></label>
+  <input id="saldo" value="0" placeholder="Ingrese un Saldo">
+</div>
+<div class="mt-4 mb-5">
+<button type="button" class="btn btn-success mt-5">Ingresar</button>
+</div>
+ </div>
 
 
-          <!-- Seccion contenedor de letras carrera y datos carrera -->
-          <section class="seccion1">
-            <div class="contenedorajustes">
-              <div class="ajustes">
-                <h2>AJUSTES</h2>
-                <div class="inputdata">
-                  <label>Nombre</label>
-                  <input id="nomuser" value="">
-                </div>
-                <div class="inputdata">
-                  <label>Tiempo en Segundos</label>
-                  <input id="tiempo" value="0">
-                </div>
-                <div class="AutoSelect">
-                  <span>Seleccione un auto</span>
-                  <div class="toggle-click" id="car1_select" >
-                    <img class="imgmin" 
-                    src="https://images.vexels.com/media/users/3/139423/isolated/preview/98bdee93f842013dc8495f64d1e1a735-car-racing-race-by-vexels.png"
-                    alt="">
-                    </div>
-
-                
-                  <div class="toggle-click" id="car2_select" >
-                  <img class="imgmin"
-                  src="https://images.vexels.com/media/users/3/145211/isolated/preview/ca19aa88a716881725fdf3520d251829-yellow-car-illustration-by-vexels.png"
-                  alt="">
-                </div>
-                </div>
+</di>
 
 
-                <div class="inputdata">
-                  <span>Apostar $</span>
-                  <input id="apuesta" value="0">
-                </div>
 
-              </div>
-            </div>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
-
-        <div class="letrasinicio">
-          <h1 class="ml4">
-            <span class="letters letters-1">Preparados</span>
-            <span class="letters letters-2">Listos</span>
-            <span class="letters letters-3">Fuera!</span>
-          </h1>
-        </div>
-
-        <div class="botoninciardiv">
-          <button class="myButton" id="iniciar">INICIAR CARRERA</button>
-          <button class="myButton" id="restart">Restart</button>
-        </div>
-      </section>
-    
-      </div> <!-- Fin div sky -->
-   
-      <div class="grass">
-
-      </div>
-
-      <div class="road">
-        <div class="lines" id="track"></div>
-        <img class="car1 car" id="car1"
-          src="https://images.vexels.com/media/users/3/139423/isolated/preview/98bdee93f842013dc8495f64d1e1a735-car-racing-race-by-vexels.png"
-          alt="">
-        <img class="car2 car" id="car2"
-          src="https://images.vexels.com/media/users/3/145211/isolated/preview/ca19aa88a716881725fdf3520d251829-yellow-car-illustration-by-vexels.png"
-          alt="">
-        <img class="finish" id="finish" src="./assets/img/finish.png">
-
-      </div>
-    </div>
-  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="anime.min.js"></script>
   <script src="./script/app.js"></script>

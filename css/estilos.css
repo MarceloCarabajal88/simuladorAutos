@@ -38,7 +38,7 @@ html {
   height: 880px;
 }
 
-h1, span{
+h1, span, h2{
   font-family: 'Bungee Spice', cursive;  text-align: center;
   padding: 30px;
   line-height: 1.2;
@@ -54,8 +54,12 @@ h1, span{
 }
 
 strong {
-  font-size: 60px;
+  font-size: 20px;
 
+}
+
+h1{
+  font-size: 50px;
 }
 
 .sky, .grass, .road {
@@ -304,3 +308,29 @@ background: linear-gradient(
 }
 .mensajefinal{
 font-family: 'Bungee Spice', cursive;  text-align: center;}
+
+
+/*Pagina INICIO*/
+.formingreso{
+  -webkit-box-shadow: 0px 0px 0px 5px #A0A0A0, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px #A31925, 5px 5px 5px 4px rgba(0,0,0,0); 
+box-shadow: 0px 0px 0px 5px #A0A0A0, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px #A31925, 5px 5px 5px 4px rgba(0,0,0,0);
+background: linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
+    background-color: #2dabf9;
+}
+
+
+.inputdatainicio{
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+width:100%;
+height: auto;
+}
+ .inputdatainicio label{
+  font-size: larger;
+  width:40%;
+ }
+.inputdatainicio input{
+  width: 40%;
+  height:30px;
+}
