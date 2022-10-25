@@ -1,14 +1,57 @@
+/*function playSound () {
+	let victory = new Audio('../assets/sonidos/sfx-victory6.mp3');
+	victory.play();
+}
 
-const historialjugadores=[];
-const ListaJugadores=[];
-const pruebajug=[{
-  "Nombre":"Marce",
-  "apuesta":300
-}];
+*/
 
-let saldo=2000;
-let saldo2=0;
+
+
+
+let lstlocal = JSON.parse(localStorage.getItem("item")); 
+
+if(lstlocal===null){
+  swal({
+    title: "ERROR!",
+    text: "Debes volver a la pagina  Inicial (index) y agregar tus datos!",
+    icon: "error",
+    
+    button: "volver al inicio!",
+  })
+  .then(() => {
+    location.href="index.html";
+  }
+  );
+
+
+  
+
+}
+
+let saldoaux=0;
+
+
+console.log(lstlocal[lstlocal.length-1].usuario+' Este es el ultimo item del array');
+console.log(lstlocal[lstlocal.length-1].saldo+' Este es el ultimo item del array');
+
+console.table(lstlocal);
+//OBTENGO NOMBRE DEL USUARIO DEL ULTIMO OBJETO DE LA LISTA
+const nomuser= lstlocal[lstlocal.length-1].usuario;
+
+
+
+
+  
+ 
+
+
+
+
+
+//let saldo=2000;
+let saldo=lstlocal[lstlocal.length-1].saldo;
 document.getElementById('saldovisual').innerHTML=saldo;
+document.getElementById('nombreusuario').innerHTML=nomuser;
 
 $('.toggle-click').on('click',function(){
   $('.toggle-click').removeClass('show-red');
@@ -109,7 +152,7 @@ function myFunction() {
 
 
 //OBTENGO NOMBRE DEL USUARIO
-const nomuser = document.getElementById("nomuser").value; 
+//const nomuser = document.getElementById("nomuser").value; 
 
 
 //OBTENGO APUESTA DEL USUARIO
@@ -158,91 +201,23 @@ let cubic="cubicBezier(.5, .02, .1, .5)";
   
 
 
-/* FALTA CHEQUEAR ESTA PARTE DEL CODIGO
-const arrayVacio = (arr) => !Array.isArray(arr) || arr.length === 0;
-
-let jugadoractivo=ListaJugadores.find(ListaJugadores => ListaJugadores.Nombre == nomuser);
-console.log("Estre es el jug activo"+jugadoractivo);
-
- 
-if (arrayVacio(ListaJugadores)==true && typeof jugadoractivo === 'undefined') { 
-alert("Entre si no hay jugadores");
-  switch(ganador){
-    case true:
-      saldo=saldo+apuesta;
-      break;
-      case false:
-        saldo= saldo-apuesta;
-        break;
-  }
-
-
-  console.log("Array esta vacio!/ NUevo Jugador") 
-
-let jugador={
-  "Nombre":nomuser,
-  "saldo":saldo,
-  };
-
-  let jugadorHisto={
-    "Nombre":nomuser,
-    "apuesta":apuesta,
-    "resultado":ganador
-    };
-
-    ListaJugadores.push(jugador);
-    historialjugadores.push(jugadorHisto);
-
-
-} 
-else
-if(arrayVacio(ListaJugadores)==false && typeof jugadoractivo !== 'undefined' ){
-  alert("Entre si SI hay jugadores");
-if(arrayVacio(jugadoractivo)==false){
-
-  switch(ganador){
-    case true:
-      saldo2=jugadoractivo.saldo+apuesta;
-      break;
-      case false:
-        saldo2= jugadoractivo.saldo-apuesta;
-        break;
-  }
-
-  let jugadorHisto={
-    "Nombre":nomuser,
-    "apuesta":apuesta,
-    "resultado":ganador
-    };
-    historialjugadores.push(jugadorHisto);
-
-
-console.log(jugadoractivo.saldo);
-
-ListaJugadores.forEach(jug => {
-  if(jug.Nombre==jugadoractivo.Nombre){
-
-jug.saldo=saldo;
-
-  }
-});
-
-}
-}
-
-*/
 
 
 switch(ganador){
   case true:
-    saldo=saldo+apuesta;
+    saldoaux=saldo+apuesta;
+    lstlocal[lstlocal.length-1].saldo=saldoaux;
+    lstlocal[lstlocal.length-1].puntaje+=100;
     break;
     case false:
-      saldo= saldo-apuesta;
+      saldoaux= saldo-apuesta;
+      lstlocal[lstlocal.length-1].saldo=saldoaux;
+      lstlocal[lstlocal.length-1].puntaje-=50;
+    
       break;
 }
 
-
+localStorage.setItem("item", JSON.stringify(lstlocal));
 
 
   let jugadorHisto={
@@ -251,14 +226,63 @@ switch(ganador){
     "resultado":ganador
     };
 
+console.log("historial")
+   
+const localStorHistorial= JSON.parse(localStorage.getItem("historico")); 
+
+switch (localStorHistorial) {
+  case null:
+   
+    const historialjugadores=[
+      {
+        "Nombre": "User Prueba 1",
+        "apuesta":300,
+        "resultado":true
+        },
+  
+        {
+          "Nombre": "User Prueba 1",
+          "apuesta":600,
+          "resultado":false
+          },
+  
+          {
+            "Nombre": "User Prueba 2",
+            "apuesta":100,
+            "resultado":true
+            },
     
+    ];
+    console.log('ES NULO POR LO QUE CREO EL ARRAY.');
+
     historialjugadores.push(jugadorHisto);
 
+    localStorage.setItem("historico", JSON.stringify(historialjugadores));
+  
 
-let historialjugadorActual = historialjugadores.filter(jugadorAc => jugadorAc.Nombre == nomuser);
+  
+  console.log(historialjugadores);
+  
 
-console.log(historialjugadores);
-console.log(historialjugadorActual);
+    break;
+
+
+  default:
+
+
+localStorHistorial.push(jugadorHisto);
+
+localStorage.setItem("historico", JSON.stringify(localStorHistorial));
+
+//let historialjugadorActual = historialjugadores.filter(jugadorAc => jugadorAc.Nombre == nomuser);
+console.log("Debajo viene historial default");
+console.table(localStorHistorial);
+//console.log(historialjugadorActual);
+  
+
+
+  }
+  
 
 //ANIMACIONES AUTOS
 
@@ -460,6 +484,7 @@ document.getElementById('restart').addEventListener('click', () => {
  let btnrestart= document.getElementById("restart");
     btnrestart.disabled=true;
 
+    saldo=lstlocal[lstlocal.length-1].saldo;
 document.getElementById('saldovisual').innerHTML=saldo;
 
 let design1 = anime({
@@ -521,3 +546,11 @@ let design1 = anime({
 });
 
  
+
+const btnsalir = document.getElementById("btnsalir");
+
+
+btnsalir .addEventListener("click", () => {
+  location.href="index.html";
+    
+});

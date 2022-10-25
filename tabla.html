@@ -29,36 +29,37 @@
 </head>
 
 <body class="d-flex align-items-center">
-
+  <div class="spansaldo">
+    <button type="button" class="btn btn-success" id="btn_index">Volver a Inicio</button>    
+  </div>
  
 
 <div class="container d-flex justify-content-center">
-  <div class="spansaldo">
-    <button type="button" class="btn btn-success" id="btn_historial">Ver Historial de jugadores</button>    
-  </div>
  <div class="col-lg-6 col-md-6 col-10 pt-4 text-center formingreso">
-  <form id="form">
-<h2>Bienvenido</h2>
-<div class="inputdatainicio">
-  <label><strong>Nombre</strong></label>
-  <input id="nomuser" value="" placeholder="Ingrese su nombre de usuario">
-</div>
-<div class="inputdatainicio">
-  <label><strong>Ingresar Saldo</strong></label>
-  <input id="saldo" value=""  placeholder="Ingrese un Saldo" type="number" onkeydown="return event.keyCode !== 69">
-</div>
-<div class="mt-4 mb-5">
-  <p></p>
-<button type="button"  id="ingresar" type="submit" class="btn btn-success mt-5">Ingresar</button>
-</div>
 
-</form>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Nombre de Usuario</th>
+        <th scope="col">Apuesta</th>
+        <th scope="col">Resultado</th>
+      
+      </tr>
+    </thead>
+    <tbody id="tbody">
+
+    
+    </tbody>
+  </table>
+  <div class="row">
+<div class="d-flex justify-content-center mt-4">
+    <button type="button" class="btn btn-danger" id="btn_borrar">BORRAR STORAGE</button>    
+  </div>
+  </div>
  </div>
 
 
-</di>
-
-
+</div>
 
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
@@ -66,7 +67,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="anime.min.js"></script>
  
-  <script src="./script/login.js"></script>
+  <script src="./script/tabla.js"></script>
 
 
 

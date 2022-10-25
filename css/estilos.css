@@ -44,14 +44,34 @@ h1, span, h2{
   line-height: 1.2;
 }
 
+.btncerrar{
+  position: absolute;
+  top: 0px;
+  right: 10px;
+}
+
+.btncerrar img{
+width:40px;
+}
+
 .spansaldo{
   position: absolute;
-  top: 50px;
+  top: 70px;
   right: 10px;
+}
+
+.spanusr{
+  position: absolute;
+  top: 70px;
+  left: 10px;
 }
 .spansaldo span{
   font-size: 20px;
 }
+
+
+
+
 
 strong {
   font-size: 20px;
@@ -333,4 +353,9 @@ height: auto;
 .inputdatainicio input{
   width: 40%;
   height:30px;
+}
+
+#btnsalir img:hover{
+  
+  filter: hue-rotate(120deg);
 }

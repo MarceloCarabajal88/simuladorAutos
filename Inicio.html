@@ -12,7 +12,7 @@
   <!-- Cargo hoja de estilos -->
   <link rel="stylesheet" href="./css/estilos.css">
 
-
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <!-- Cargo Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,13 +35,23 @@
 
       <!-- div sky -->
       <div class="sky">
-        <audio controls autoplay>
+        <audio controls>
           <source src="./assets/sonidos/Route66.mp3" type="audio/mpeg">
         </audio>
-        <div class="spansaldo">
-          <span id="saldovisual"></span>
-        </div>
 
+        <div class="btncerrar" id="btnsalir">
+         <img src="./assets/img/cancel.png">
+          </div>
+
+        <div class="spansaldo">
+          <span>saldo:</span>
+          <span id="saldovisual"></span>
+          
+        </div>
+        <div class="spanusr">
+        <span id="nombreusuario"></span>
+       </div>
+        
         <h1>SIMULADOR CARRERAS<br>DE AUTOS</h1>
         <div class="finalmessage" id="windowfinish">
           <p class="mensajefinal"></p>
@@ -53,13 +63,10 @@
             <div class="contenedorajustes">
               <div class="ajustes">
                 <h2>AJUSTES</h2>
-                <div class="inputdata">
-                  <label>Nombre</label>
-                  <input id="nomuser" value="">
-                </div>
+              
                 <div class="inputdata">
                   <label>Tiempo en Segundos</label>
-                  <input id="tiempo" value="0">
+                  <input id="tiempo" value="0" type="number" onkeydown="return event.keyCode !== 69">
                 </div>
                 <div class="AutoSelect">
                   <span>Seleccione un auto</span>
@@ -80,7 +87,7 @@
 
                 <div class="inputdata">
                   <span>Apostar $</span>
-                  <input id="apuesta" value="0">
+                  <input id="apuesta" value="0" type="number" onkeydown="return event.keyCode !== 69">
                 </div>
 
               </div>
@@ -123,6 +130,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="anime.min.js"></script>
   <script src="./script/app.js"></script>
+
+
 
 
 
