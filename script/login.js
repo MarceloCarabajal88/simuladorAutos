@@ -51,9 +51,7 @@ const saldousr = document.getElementById("saldo");
           "puntaje": 60
             },];
         
-        alert("Soy null creo lista usuarios");
         ListaUsuarios2.push(user);
-        alert(user);
         localStorage.setItem("item", JSON.stringify(ListaUsuarios2));
       }
       
