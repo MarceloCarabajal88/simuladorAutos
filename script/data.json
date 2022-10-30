@@ -1,0 +1,40 @@
+[
+    {
+       "Nombre":"User Prueba 1",
+       "apuesta":300,
+       "resultado":true
+    },
+    {
+       "Nombre":"User Prueba 2",
+       "apuesta":600,
+       "resultado":false
+    },
+    {
+       "Nombre":"User Prueba 3",
+       "apuesta":100,
+       "resultado":true
+    },
+    {
+       "Nombre":"User Prueba 5",
+       "apuesta":300,
+       "resultado":false
+    },
+
+    {
+        "Nombre":"User Prueba 6",
+        "apuesta":800,
+        "resultado":true
+     },
+
+     {
+        "Nombre":"User Prueba 7",
+        "apuesta":600,
+        "resultado":false
+     },
+
+     {
+        "Nombre":"User Prueba 8",
+        "apuesta":600,
+        "resultado":false
+     }
+ ]

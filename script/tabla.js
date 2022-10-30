@@ -1,3 +1,30 @@
+//ASYNC AWAIT
+let historialJug = JSON.parse(localStorage.getItem("historico")); 
+const URL='./script/data.json';
+
+const CargarHistorial= async(URL)=>{
+  const respuesta= await fetch (URL);
+  const datos= await respuesta.json();
+  historialJug=datos;
+  creartabla();
+}
+
+
+//cargarHistorialJson();
+
+switch (historialJug) {
+
+  case null:
+    CargarHistorial(URL);
+
+
+    break;
+
+    default:
+      creartabla();
+
+}
+
 const btn_index = document.getElementById("btn_index");
 const btn_borrar = document.getElementById("btn_borrar");
 
@@ -12,11 +39,11 @@ btn_index.addEventListener("click", () => {
 
   
 
-let historialJug = JSON.parse(localStorage.getItem("historico")); 
-
+/*
 if(historialJug!==null){
   creartabla();
 }
+*/
 
 console.table(historialJug);
 

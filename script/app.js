@@ -228,41 +228,34 @@ localStorage.setItem("item", JSON.stringify(lstlocal));
 
 console.log("historial")
    
-const localStorHistorial= JSON.parse(localStorage.getItem("historico")); 
+const localStorHistorial= JSON.parse(localStorage.getItem("historico")); // CARGO HISTORICO
+ 
+const URL='./script/data.json';
+
+//FUNCION PARA CARGAR HISTORIAL DEL JSON EN CASO DE Q ESTE SEA NULL
+const CargarHistorial= async(URL)=>{
+  const respuesta= await fetch (URL);
+  const datos= await respuesta.json();
+  
+  console.log(jugadorHisto);
+  datos.push(jugadorHisto);
+  localStorage.setItem("historico", JSON.stringify(datos));
+}
+
 
 switch (localStorHistorial) {
   case null:
+   alert("entre el his");
+    CargarHistorial(URL);
+    console.log('ES NULO POR LO QUE LE AGREGON EL ARRAY DE JSON DATA CON LA FUNCION');
+
+ 
+
    
-    const historialjugadores=[
-      {
-        "Nombre": "User Prueba 1",
-        "apuesta":300,
-        "resultado":true
-        },
-  
-        {
-          "Nombre": "User Prueba 1",
-          "apuesta":600,
-          "resultado":false
-          },
-  
-          {
-            "Nombre": "User Prueba 2",
-            "apuesta":100,
-            "resultado":true
-            },
-    
-    ];
-    console.log('ES NULO POR LO QUE CREO EL ARRAY.');
-
-    historialjugadores.push(jugadorHisto);
-
-    localStorage.setItem("historico", JSON.stringify(historialjugadores));
   
 
   
-  console.log(historialjugadores);
-  
+
 
     break;
 
