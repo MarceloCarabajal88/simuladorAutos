@@ -1,9 +1,8 @@
-/*function playSound () {
-	let victory = new Audio('../assets/sonidos/sfx-victory6.mp3');
-	victory.play();
-}
+let victory = new Audio('./assets/sonidos/sfx-victory6.mp3');
+let loss= new Audio('./assets/sonidos/sfx-defeat1.mp3');
 
-*/
+
+
 
 
 
@@ -205,11 +204,21 @@ let cubic="cubicBezier(.5, .02, .1, .5)";
 
 switch(ganador){
   case true:
+    const audiowin= setTimeout(()=>{
+      victory.play();
+    },tiempo2 + 3000);
+
+
     saldoaux=saldo+apuesta;
     lstlocal[lstlocal.length-1].saldo=saldoaux;
     lstlocal[lstlocal.length-1].puntaje+=100;
+
     break;
     case false:
+      const lossw= setTimeout(()=>{
+        loss.play();
+      },tiempo2+3000);
+      
       saldoaux= saldo-apuesta;
       lstlocal[lstlocal.length-1].saldo=saldoaux;
       lstlocal[lstlocal.length-1].puntaje-=50;
