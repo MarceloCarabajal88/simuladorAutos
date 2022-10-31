@@ -254,7 +254,7 @@ const CargarHistorial= async(URL)=>{
 
 switch (localStorHistorial) {
   case null:
-   alert("entre el his");
+ 
     CargarHistorial(URL);
     console.log('ES NULO POR LO QUE LE AGREGON EL ARRAY DE JSON DATA CON LA FUNCION');
 
