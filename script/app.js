@@ -1,7 +1,9 @@
 let victory = new Audio('./assets/sonidos/sfx-victory6.mp3');
 let loss= new Audio('./assets/sonidos/sfx-defeat1.mp3');
 
+//let race= new Audio('./assets/sonidos/audi-v8-acceleration-sound-6067.mp3');
 
+  let race= new Audio('./assets/sonidos/audi-v8-acceleration-sound-6067.mp3');
 
 
 
@@ -84,6 +86,8 @@ $("#car2_select").click( function(){
  
 
 function myFunction() {
+
+
 
   let ganador= false;
 
@@ -198,8 +202,16 @@ tiempocar1=res;
 let tiempo2= parseInt(tiempo) *1000; // Pasar los segundos a milisegundos
 let cubic="cubicBezier(.5, .02, .1, .5)";
   
+  //AUDIO PARA LOS AUTOS
+  const iniciaraudioautos= setTimeout(()=>{
+    race.loop=true;
+    race.play();
+  }, 3000);
 
+  const cortaraudioautos= setTimeout(()=>{
 
+    race.pause();
+  }, tiempo2+3000);
 
 
 switch(ganador){
@@ -344,6 +356,8 @@ var design = anime({
   delay:3000,
   loop: false
 });
+
+
 
 //ANIMAR META
 var design = anime({
