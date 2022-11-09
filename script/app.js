@@ -1,11 +1,11 @@
 let victory = new Audio('./assets/sonidos/sfx-victory6.mp3');
 let loss= new Audio('./assets/sonidos/sfx-defeat1.mp3');
-
+let largada = new Audio('./assets/sonidos/largada.mp3');
 //let race= new Audio('./assets/sonidos/audi-v8-acceleration-sound-6067.mp3');
 
   let race= new Audio('./assets/sonidos/audi-v8-acceleration-sound-6067.mp3');
 
-
+let autousuario=null;
 
 
 
@@ -41,15 +41,51 @@ const nomuser= lstlocal[lstlocal.length-1].usuario;
 
 
 
-
+//FUNCION VALIDAR DATOS
+function validarApuesta(apuesta){
   
- 
+  //VALIDO Q APUESTA SEA MAYOR A 0
+  if (apuesta>0){
+    if(saldo< apuesta){
+      document.getElementById('validar').innerHTML="Saldo Insuficiente para realizar apuesta";
+      return false;
+    }
+  }
+  else{
+    document.getElementById('validar').innerHTML="la apuesta debe ser mayor a 0";
+    return false;
+  }
+   return true;
+  
+   }
+  
+   function validarDatos(tiempo,auto){
+
+  let bandera = true;
+  mensajeval="";
+     if(tiempo<5) {
+    
+        mensajeval+="- Tiempo debe ser mayor a 5"
+       
+        bandera= false;
+     
+    }
+
+    if (auto==null) {
+        mensajeval+="- Debe Seleccionar un auto"
+        bandera= false;
+    }
+
+
+    document.getElementById('validar2').innerHTML=mensajeval;
+  
+     return bandera
+   }
 
 
 
 
 
-//let saldo=2000;
 let saldo=lstlocal[lstlocal.length-1].saldo;
 document.getElementById('saldovisual').innerHTML=saldo;
 document.getElementById('nombreusuario').innerHTML=nomuser;
@@ -92,7 +128,6 @@ function myFunction() {
   let ganador= false;
 
   let random = Math.floor(Math.random()*(maxrandom-minrandom+1)+minrandom);
-  //alert(random);
  
   //DETERMINO SI EL NUMERO RANDOM ES PAR
  //SI EL NUMERO ES PAR EL USUARIO GANA LA PARTIDA SIN IMPORTAT EL AUTO APOSTADO
@@ -136,6 +171,8 @@ function myFunction() {
      velocidades.push(vel);
    }
  }
+
+
  
  CurvasVelocidad();
  
@@ -161,6 +198,7 @@ function myFunction() {
 //OBTENGO APUESTA DEL USUARIO
 let apuesta = parseInt(document.getElementById("apuesta").value); 
 
+ 
 
 
   let finalmessage="";
@@ -202,23 +240,34 @@ tiempocar1=res;
 let tiempo2= parseInt(tiempo) *1000; // Pasar los segundos a milisegundos
 let cubic="cubicBezier(.5, .02, .1, .5)";
   
+
+//audio largada
+
+
   //AUDIO PARA LOS AUTOS
+  const audiolargada= setTimeout(()=>{
+    race.loop=false;
+    largada.play();
+
+  }, -1000);
+
   const iniciaraudioautos= setTimeout(()=>{
     race.loop=true;
     race.play();
-  }, 3000);
+  }, 4000);
 
   const cortaraudioautos= setTimeout(()=>{
 
     race.pause();
-  }, tiempo2+3000);
+  }, tiempo2+4000);
 
+  
 
 switch(ganador){
   case true:
     const audiowin= setTimeout(()=>{
       victory.play();
-    },tiempo2 + 3000);
+    },tiempo2 + 4000);
 
 
     saldoaux=saldo+apuesta;
@@ -229,7 +278,7 @@ switch(ganador){
     case false:
       const lossw= setTimeout(()=>{
         loss.play();
-      },tiempo2+3000);
+      },tiempo2+4000);
       
       saldoaux= saldo-apuesta;
       lstlocal[lstlocal.length-1].saldo=saldoaux;
@@ -273,11 +322,6 @@ switch (localStorHistorial) {
  
 
    
-  
-
-  
-
-
     break;
 
 
@@ -321,7 +365,7 @@ loop: false,
   ],
   easing: cubic,
   duration: tiempo2+tiempocar1,
-  delay:3000,
+  delay:4000,
 
   loop: false,
  
@@ -338,7 +382,7 @@ var design = anime({
   ],
   easing: 'cubicBezier(.1, .02, .1, .3)',
   duration: tiempo2+tiempocar2,
-  delay:3000,
+  delay:4000,
   loop: false, 
  
 });
@@ -353,7 +397,7 @@ var design = anime({
   ],
   easing: 'cubicBezier(.05, .05, .05, .05)',
   duration: tiempo2,
-  delay:3000,
+  delay:4000,
   loop: false
 });
 
@@ -369,7 +413,7 @@ var design = anime({
   ],
   easing: 'cubicBezier(.01, .01, .01, .01)',
   duration: tiempo2,
-  delay:3000,
+  delay:4000,
   loop: false
 });
 // ANIMAR MENSAJE FINAL
@@ -379,7 +423,7 @@ var design = anime({
   opacity:1,
 
   
-  delay:tiempo2+4000,
+  delay:tiempo2+5000,
   loop: false
 });
 
@@ -392,7 +436,7 @@ const t = anime.timeline({
 });
 t.add({
   targets: '#restart',
-  delay: tiempo2+4000,
+  delay: tiempo2+5000,
   opacity:1,
 }).add({
   update: function() {
@@ -486,7 +530,17 @@ letras.add({
 
 
 
-document.getElementById("iniciar").onclick = function() {myFunction()};
+document.getElementById("iniciar").onclick = function() {
+  let apuestaaux=parseInt(document.getElementById("apuesta").value);
+  let tiempoval = document.getElementById("tiempo").value; 
+
+  if (validarApuesta(apuestaaux) & validarDatos(tiempoval,autousuario)){
+    document.getElementById('validar').innerHTML="";
+  document.getElementById('validar2').innerHTML="";
+  myFunction();
+}
+
+};
 
 
 
@@ -494,8 +548,8 @@ document.getElementById("iniciar").onclick = function() {myFunction()};
 // BOTON CON FUNCION PARA RESETEAR ANIMACIONES
 document.getElementById('restart').addEventListener('click', () => {
 
-
-
+  document.getElementById('validar').innerHTML="";
+  document.getElementById('validar2').innerHTML="";
  //DESACTIVO BOTON UNA VEZ PRESIONADO
  let btnrestart= document.getElementById("restart");
     btnrestart.disabled=true;

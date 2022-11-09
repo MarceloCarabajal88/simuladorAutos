@@ -1,5 +1,19 @@
 //ASYNC AWAIT
 let historialJug = JSON.parse(localStorage.getItem("historico")); 
+if (historialJug!=null){
+historialJug.sort( (a, b) => {
+  if(a.apuesta < b.apuesta) {
+    return 1;
+  }
+  if(a.apuesta > b.apuesta) {
+    return -1;
+  }
+
+  return 0;
+});
+console.log(historialJug);
+}
+
 const URL='./script/data.json';
 
 const CargarHistorial= async(URL)=>{
