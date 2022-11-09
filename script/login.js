@@ -23,12 +23,18 @@ function guardar(valor) {
 const saldousr = document.getElementById("saldo");
   
   let user = { usuario: nomuser.value, saldo: parseInt(saldousr.value), puntaje:puntaje };
-  if (user.usuario === "" || user.saldo === "") {
+  
+  if (user.usuario === "" || isNaN(user.saldo) || user.saldo<1 ) {
    
-    p.innerText = "Los campos no deben estar vacios";
+    p.innerText = "Los campos no deben estar vacios y el saldo debe ser menor a 0";
+
+
     return;
+    
+
   } 
   else {
+   
     if (valor === "sessionStorage") {
       
       ListaUsuarios.push(user);
@@ -77,7 +83,7 @@ const saldousr = document.getElementById("saldo");
 
 btn.addEventListener("click", () => {
 
- 
+
     if(guardar("localStorage")){
     
 
